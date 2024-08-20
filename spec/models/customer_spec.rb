@@ -12,11 +12,26 @@ RSpec.describe Customer, type: :model do
     subject.last_name=nil
     expect(subject).to_not be_valid
   end
-  it "is not valid without a phone number"
-  it "is not valid without an email"
-  it "is not valid if the phone number is not 10 chars"
-  it "is not valid if the phone number is not all digits"
-  it "is not valid if the email address doesn't have a @"
+  it "is not valid without a phone number" do
+    subject.phone = nil
+    expect(subject).to_not be_valid
+  end
+  it "is not valid without an email" do
+    subject.email = nil
+    expect(subject).to_not be_valid
+  end
+  it "is not valid if the phone number is not 10 chars" do
+    subject.phone = "112" 
+    expect(subject).to_not be_valid
+  end
+  it "is not valid if the phone number is not all digits" do
+    subject.phone = "12345abcd1"
+    expect(subject).to_not be_valid
+  end
+  it "is not valid if the email address doesn't have a @" do
+    subject.email = "jsmithsample.com" 
+    expect(subject).to_not be_valid
+  end
   it "returns the correct full_name" do
     expect(subject.full_name).to eq("Jack Smith")
   end
