@@ -17,7 +17,7 @@
         <div class="card-footer d-flex justify-content-start">
           <%= button_to "Show", order_path(order), class: "btn btn-primary btn-sm me-2", method: :get %>
           <%= button_to "Edit", edit_order_path(order), class: "btn btn-secondary btn-sm me-2", method: :get %>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-id=<%= order.id.to_s %> data-customer="<%= order.customer.full_name %>" data-productname="<%= order.product_name %>" data-productcount="<%= order.product_count %>">Delete</button>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal" data-id=<%= order.id.to_s %> data-customer="<%= order.customer.full_name %>" data-productname="<%= order.product_name %>" data-productcount="<%= order.product_count %>">Delete</button>
 
         </div>        
       </div>

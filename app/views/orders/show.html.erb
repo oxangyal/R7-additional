@@ -7,7 +7,7 @@
   <%= link_to "Back to orders", orders_path %> |
   <%= link_to "Back to customer", customer_path(@order.customer_id) %>
   <div class="mt-3">
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-id=<%= @order.id.to_s %> data-customer="<%= @order.customer.full_name %>" data-productname="<%= @order.product_name %>" data-productcount="<%= @order.product_count %>">Delete</button>
+ <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal" data-id=<%= @order.id.to_s %> data-customer="<%= @order.customer.full_name %>" data-productname="<%= @order.product_name %>" data-productcount="<%= @order.product_count %>">Delete order</button>
   </div>
 </div>
 <%= render "deleteModal" %>
