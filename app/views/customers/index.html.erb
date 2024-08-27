@@ -6,21 +6,19 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Orders</th>
+      <th class="ps-5">Orders</th>
     </tr>
   </thead>
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.full_name %></td>
-        <td><%= customer.orders.count %></td>
-        <td><%= button_to "Show", customer_path(customer), method: :get %></td>
-        <td><%= button_to "Edit", edit_customer_path(customer), method: :get %></td>
-        <td><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= icon('fa-solid', 'user', class: "me-2")%><%= customer.full_name %></td> 
+        <td class="ps-5"><%= customer.orders.count%></td>
+        <td><%= button_to "Show", customer_path(customer), method: :get,  class: "btn btn-primary btn-sm me-2" %></td>
+        <td><%= button_to "Edit", edit_customer_path(customer), method: :get,  class: "btn btn-secondary  btn-sm me-2" %></td>
+        <td><button type="button" class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>"> Delete </button></td>
       </tr>
+      <%= render partial: "deleteModal", locals: { customer: customer } %>
     <% end %>
   </tbody>
 </table>
-
-
-<%= link_to "New customer", new_customer_path %>
