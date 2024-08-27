@@ -18,7 +18,7 @@
         <td><%= button_to "Edit", edit_customer_path(customer), method: :get,  class: "btn btn-secondary  btn-sm me-2" %></td>
         <td><button type="button" class="btn btn-danger btn-sm " data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>"> Delete </button></td>
       </tr>
-      <%= render partial: "deleteModal", locals: { customer: customer } %>
+      <%= render "deleteModal",  customer: customer  %>
     <% end %>
   </tbody>
 </table>
