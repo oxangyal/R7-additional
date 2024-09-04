@@ -6,8 +6,12 @@
   <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
   <%= link_to "Back to customers", customers_path %>
 
-  <%= button_to "Delete this customer", @customer, method: :delete %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+    Delete this customer
+  </button>
 </div>
+
+<%= render partial: 'deleteModal', locals: { customer: @customer } %>
 
 <% if @customer.orders.any? %>
   <h3>Orders for <%= @customer.full_name %></h3>

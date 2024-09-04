@@ -17,9 +17,15 @@
       <p>This is a sample application that association orders with customers.</p>
     </div>
 
-    <% if flash[:notice].present? %>
-    <p class="notice"><%= flash[:notice] %></p>
+    <% flash.each do |key, message| %>
+      <% if message.is_a?(String) %>
+        <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
     <% end %>
+
 
     <nav class="navbar navbar-expand-lg bg-light navbar-light">       
       <div class="nav-item dropdown me-3">
