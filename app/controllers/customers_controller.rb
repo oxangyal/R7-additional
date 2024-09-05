@@ -77,11 +77,15 @@ class CustomersController < ApplicationController
   end
 
   def destroy_with_orders
+    message = "#{@customer.full_name} has been deleted."
+  
     if @customer.orders.any?
       @customer.orders.destroy_all
+      message += " All associated orders have been deleted as well."
     end
+  
     @customer.destroy
-    flash[:notice] = "Customer and their orders have been successfully deleted."
+    flash[:notice] = message
     redirect_to customers_path
   end
   
