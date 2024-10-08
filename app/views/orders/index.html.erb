@@ -2,28 +2,27 @@
 
 <h1>Orders</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Customer</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.product_name %></td>
-        <td><%= order.product_count %></td>
-        <td><%= order.customer.full_name %></td>
-        <td><%= button_to "Show", order_path(order), method: :get %></td>
-        <td><%= button_to "Edit", edit_order_path(order), method: :get %></td>
-        <td><%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container-fluid row">
+  <% @orders.each do |order| %>
+    <div class="col-sm">
+      <div class="card border border-2 border-secondary p-1 mt-3" style="width: 18rem;">
+        <div class="card-header">
+          <strong>Order Details</strong>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= order.product_name %></h5>
+          <p class="card-text">Quantity: <%= order.product_count %></p>
+          <p class="card-text">Customer: <%= order.customer.full_name %></p>
+        </div>
+        <div class="card-footer d-flex justify-content-start">
+          <%= button_to "Show", order_path(order), class: "btn btn-primary btn-sm me-2", method: :get %>
+          <%= button_to "Edit", edit_order_path(order), class: "btn btn-secondary btn-sm me-2", method: :get %>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal" data-id=<%= order.id.to_s %> data-customer="<%= order.customer.full_name %>" data-productname="<%= order.product_name %>" data-productcount="<%= order.product_count %>">Delete</button>
 
+        </div>        
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to "New order", new_order_path %>
+<%= render "deleteModal" %>

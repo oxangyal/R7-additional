@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "The order record was successfully destroyed." }
+      format.html { redirect_to orders_url, notice: "The order record was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -61,6 +61,7 @@ class OrdersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_order
     @order = Order.find(params[:id])
+    
   end
 
   # Only allow a list of trusted parameters through.

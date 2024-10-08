@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: %i[ show edit update destroy destroy_with_orders]
 
   # GET /customers or /customers.json
   def index
@@ -75,6 +75,21 @@ class CustomersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def destroy_with_orders
+    message = "#{@customer.full_name} has been deleted."
+  
+    if @customer.orders.any?
+      @customer.orders.destroy_all
+      message += " All associated orders have been deleted as well."
+    end
+  
+    @customer.destroy
+    flash[:notice] = message
+    redirect_to customers_path
+  end
+  
+
 
   private
 

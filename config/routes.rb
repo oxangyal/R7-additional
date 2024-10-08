@@ -8,8 +8,15 @@ Rails.application.routes.draw do
   get 'orders/destroy'
   root to: 'customers#index'
 
-  resources :customers
+  resources :customers do
+    member do
+      delete 'destroy_with_orders'
+    end
+  end
   resources :orders
+
+  
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
